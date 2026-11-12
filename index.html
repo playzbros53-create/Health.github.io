@@ -1,0 +1,676 @@
+git config<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Patient Registration Form</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: cyan;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            width: 850px;
+            max-width: 100%;
+            margin: 30px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .header {
+            position: relative;
+            min-height: 100px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+
+        .header h2 {
+            color: red;
+            text-align: center;
+            font-size: 25px;
+            margin: 0;
+            padding: 0 100px;
+        }
+
+        .logo {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+        }
+
+        .row {
+            display: grid;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .two {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .three {
+            grid-template-columns: 1fr 1fr 1fr;
+        }
+
+        .section-title {
+            color: pink;
+            border-bottom: 2px solid blue;
+            padding-bottom: 5px;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 18px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #333;
+        }
+
+        input,
+        select,
+        textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #aaa;
+            border-radius: 5px;
+            font-size: 14px;
+            outline: none;
+            background-color: white;
+            font-family: Arial, sans-serif;
+        }
+
+        input:focus,
+        select:focus,
+        textarea:focus {
+            border: 1px solid maroon;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .gender,
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 10px 0;
+        }
+
+        .gender label,
+        .radio-group label,
+        .nested-options label {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: normal;
+            cursor: pointer;
+        }
+
+        .gender input,
+        .radio-group input,
+        .nested-options input {
+            width: auto;
+        }
+
+        .nested-options {
+            margin-left: 25px;
+            margin-top: 10px;
+            padding: 10px 15px;
+            border-left: 3px solid black;
+            background-color: #f9f9f9;
+            border-radius: 0 5px 5px 0;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        /* CASH DETAILS */
+
+        #cashDetails {
+            display: none;
+            margin-top: 15px;
+            padding: 20px;
+            background-color: #f0ffff;
+            border-left: 4px solid blue;
+            border-radius: 5px;
+        }
+
+        #cashDetails h3 {
+            color: blue;
+            margin-top: 0;
+        }
+
+        #cashDetails label {
+            margin-top: 12px;
+        }
+
+        /* BUTTONS */
+
+        .buttons {
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+        }
+
+        button {
+            padding: 13px 25px;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            font-size: 15px;
+            cursor: pointer;
+        }
+
+        .register {
+            background-color: blue;
+        }
+
+        .reset {
+            background-color: #555;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        /* MOBILE RESPONSIVENESS */
+
+        @media screen and (max-width: 600px) {
+
+            .container {
+                padding: 20px;
+            }
+
+            .two,
+            .three {
+                grid-template-columns: 1fr;
+            }
+
+            .header {
+                min-height: 85px;
+            }
+
+            .header h2 {
+                font-size: 18px;
+                padding: 0 70px 0 0;
+            }
+
+            .logo {
+                width: 65px;
+                height: 65px;
+            }
+
+            .buttons {
+                flex-direction: column;
+            }
+
+            button {
+                width: 100%;
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+
+        <!-- HEADER AND LOGO -->
+
+        <div class="header">
+
+            <h2>PATIENT REGISTRATION FORM</h2>
+
+            <img src="./download.jpg" alt="Medical Logo" class="logo">
+
+        </div>
+
+        <form id="patientForm">
+
+            <!-- PATIENT ID AND DATE -->
+
+            <div class="row two">
+
+                <div>
+                    <label>Patient ID (NHIF Card No.)</label>
+                    <input type="text" name="patient_id" placeholder="Enter Patient ID" required>
+                </div>
+
+                <div>
+                    <label>Registration Date</label>
+                    <input type="date" name="registration_date" required>
+                </div>
+
+            </div>
+
+            <!-- PATIENT NAME -->
+
+            <label>Patient Name</label>
+
+            <div class="row three">
+
+                <input type="text" name="first_name" placeholder="First Name" required>
+
+                <input type="text" name="surname" placeholder="Surname" required>
+
+                <input type="text" name="middle_name" placeholder="Middle Name">
+
+            </div>
+
+            <!-- GENDER AND BIRTH DATE -->
+
+            <div class="row two">
+
+                <div>
+                    <label>Gender</label>
+
+                    <div class="gender">
+
+                        <label>
+                            <input type="radio" name="gender" value="Male" required>
+                            Male
+                        </label>
+
+                        <label>
+                            <input type="radio" name="gender" value="Female">
+                            Female
+                        </label>
+
+                    </div>
+                </div>
+
+                <div>
+                    <label>Birth Date</label>
+                    <input type="date" name="birth_date" required>
+                </div>
+
+            </div>
+
+            <!-- ADDRESS -->
+
+            <label>Address</label>
+
+            <div class="row">
+
+                <input type="text" name="street_address" placeholder="Street Address">
+
+            </div>
+
+            <!-- CITY REGION COUNTRY -->
+
+            <div class="row three">
+
+                <input type="text" name="city" placeholder="City">
+
+                <select name="region" required>
+                    <option value="">Select Region</option>
+                    <option>Arusha</option>
+                    <option>Dar es Salaam</option>
+                    <option>Dodoma</option>
+                    <option>Geita</option>
+                    <option>Iringa</option>
+                    <option>Kagera</option>
+                    <option>Kigoma</option>
+                    <option>Kilimanjaro</option>
+                    <option>Lindi</option>
+                    <option>Manyara</option>
+                    <option>Mara</option>
+                    <option>Mbeya</option>
+                    <option>Morogoro</option>
+                    <option>Mtwara</option>
+                    <option>Mwanza</option>
+                    <option>Njombe</option>
+                    <option>Pemba North</option>
+                    <option>Pemba South</option>
+                    <option>Pwani</option>
+                    <option>Rukwa</option>
+                    <option>Ruvuma</option>
+                    <option>Shinyanga</option>
+                    <option>Simiyu</option>
+                    <option>Singida</option>
+                    <option>Songwe</option>
+                    <option>Tabora</option>
+                    <option>Tanga</option>
+                    <option>Zanzibar North</option>
+                    <option>Zanzibar South</option>
+                    <option>Zanzibar Urban/West</option>
+                </select>
+
+                <select name="country" required>
+                    <option value="">Select Country</option>
+                    <option>Afghanistan</option>
+                    <option>Albania</option>
+                    <option>Algeria</option>
+                    <option>Angola</option>
+                    <option>Argentina</option>
+                    <option>Australia</option>
+                    <option>Austria</option>
+                    <option>Bangladesh</option>
+                    <option>Belgium</option>
+                    <option>Botswana</option>
+                    <option>Brazil</option>
+                    <option>Burundi</option>
+                    <option>Canada</option>
+                    <option>China</option>
+                    <option>Denmark</option>
+                    <option>Egypt</option>
+                    <option>France</option>
+                    <option>Germany</option>
+                    <option>Ghana</option>
+                    <option>India</option>
+                    <option>Indonesia</option>
+                    <option>Italy</option>
+                    <option>Japan</option>
+                    <option>Kenya</option>
+                    <option>Malawi</option>
+                    <option>Malaysia</option>
+                    <option>Mozambique</option>
+                    <option>Netherlands</option>
+                    <option>Nigeria</option>
+                    <option>Norway</option>
+                    <option>Pakistan</option>
+                    <option>Rwanda</option>
+                    <option>Saudi Arabia</option>
+                    <option>South Africa</option>
+                    <option>South Sudan</option>
+                    <option>Spain</option>
+                    <option>Sweden</option>
+                    <option>Tanzania</option>
+                    <option>Uganda</option>
+                    <option>United Arab Emirates</option>
+                    <option>United Kingdom</option>
+                    <option>United States</option>
+                    <option>Zambia</option>
+                    <option>Zimbabwe</option>
+                </select>
+
+            </div>
+
+            <!-- PHONE NUMBER -->
+
+            <div class="row">
+
+                <div>
+                    <label>Patient's Phone Number</label>
+                    <input type="tel" name="phone" placeholder="Enter Phone Number" required>
+                </div>
+
+            </div>
+
+            <!-- MEDICATION INFORMATION -->
+
+            <h3 class="section-title">Medication Information</h3>
+
+            <div class="row">
+
+                <div>
+                    <label>Please list any medications you are currently taking</label>
+                    <textarea name="current_medications" placeholder="Enter current medications..."></textarea>
+                </div>
+
+                <div>
+                    <label>Please list any allergies</label>
+                    <textarea name="allergies" placeholder="Enter allergies..."></textarea>
+                </div>
+
+            </div>
+
+            <!-- PHYSICIAN INFORMATION -->
+
+            <h3 class="section-title">Primary Care Physician Information</h3>
+
+            <div class="row three">
+
+                <div>
+                    <label>Physician Name</label>
+                    <input type="text" name="physician_name" placeholder="Enter Physician Name">
+                </div>
+
+                <div>
+                    <label>Physician Room/Office No.</label>
+                    <input type="text" name="physician_room_no" placeholder="Room/Office No.">
+                </div>
+
+                <div>
+                    <label>Phone Number</label>
+                    <input type="tel" name="physician_phone" placeholder="Enter Phone Number">
+                </div>
+
+            </div>
+
+            <!-- METHODS OF PAYMENT -->
+
+            <h3 class="section-title">Methods of Payment</h3>
+
+            <div class="radio-group">
+
+                <label>
+                    <input type="radio" name="payment_method" value="Cash" required>
+                    Cash
+                </label>
+
+                <label>
+                    <input type="radio" name="payment_method" value="Mobile Payment">
+                    Mobile Payment
+                </label>
+
+            </div>
+
+            <!-- CASH PAYMENT DETAILS -->
+
+            <div id="cashDetails">
+
+                <h3>Cash Payment Details</h3>
+
+                <label>Amount Paid</label>
+                <input type="text" name="amount_paid" placeholder="Enter Amount (e.g. 10,000)"
+                    oninput="formatAmount(this)" disabled required>
+
+                <label>Receiver's Name</label>
+                <input type="text" name="receiver_name" placeholder="Enter Receiver's Name" disabled required>
+
+                <label>Date</label>
+                <input type="date" name="cash_date" disabled required>
+
+            </div>
+
+            <!-- MOBILE PAYMENT OPTIONS -->
+
+            <div id="mobileOptions" class="nested-options" style="display:none;">
+
+                <label>
+                    <input type="radio" name="mobile_provider" value="M-Pesa">
+                    M-Pesa
+                </label>
+
+                <label>
+                    <input type="radio" name="mobile_provider" value="Airtel">
+                    Airtel
+                </label>
+
+                <label>
+                    <input type="radio" name="mobile_provider" value="Tigo">
+                    Tigo
+                </label>
+
+                <label>
+                    <input type="radio" name="mobile_provider" value="Selcom">
+                    Selcom
+                </label>
+
+                <label>
+                    <input type="radio" name="mobile_provider" value="Halotel">
+                    Halotel
+                </label>
+
+            </div>
+
+            <!-- BUTTONS -->
+
+            <div class="buttons">
+
+                <button type="submit" class="register">
+                    Register Patient
+                </button>
+
+                <button type="reset" class="reset">
+                    Reset
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+<br><br>    
+
+<P>&copy; 2026 MARWA.</P>
+<br><br>
+
+<p> All Rights Reserved.</p>
+
+    <!-- JAVASCRIPT -->
+
+    <script>
+
+        let previousPayment = null;
+
+        /* PAYMENT OPTIONS */
+
+        document.querySelectorAll('input[name="payment_method"]')
+            .forEach(radio => {
+
+                radio.addEventListener("click", function () {
+
+                    const cashDetails = document.getElementById("cashDetails");
+                    const mobileOptions = document.getElementById("mobileOptions");
+
+                    const cashInputs = cashDetails.querySelectorAll("input");
+
+                    // CLICK THE SAME OPTION AGAIN TO UNSELECT IT
+
+                    if (previousPayment === this) {
+
+                        this.checked = false;
+                        previousPayment = null;
+
+                        cashDetails.style.display = "none";
+                        mobileOptions.style.display = "none";
+
+                        cashInputs.forEach(input => {
+                            input.value = "";
+                            input.disabled = true;
+                        });
+
+                        mobileOptions.querySelectorAll("input").forEach(input => {
+                            input.checked = false;
+                        });
+
+                        return;
+                    }
+
+                    previousPayment = this;
+
+                    // CASH SELECTED
+
+                    if (this.value === "Cash") {
+
+                        cashDetails.style.display = "block";
+                        mobileOptions.style.display = "none";
+
+                        cashInputs.forEach(input => {
+                            input.disabled = false;
+                        });
+
+                        mobileOptions.querySelectorAll("input").forEach(input => {
+                            input.checked = false;
+                        });
+
+                    }
+
+                    // MOBILE PAYMENT SELECTED
+
+                    else {
+
+                        cashDetails.style.display = "none";
+                        mobileOptions.style.display = "flex";
+
+                        cashInputs.forEach(input => {
+                            input.disabled = true;
+                            input.value = "";
+                        });
+
+                    }
+
+                });
+
+            });
+
+        /* FORMAT AMOUNT */
+
+        function formatAmount(input) {
+
+            let value = input.value.replace(/\D/g, "");
+
+            input.value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+
+        }
+
+        /* RESET FORM */
+
+        document.getElementById("patientForm")
+            .addEventListener("reset", function () {
+
+                previousPayment = null;
+
+                document.getElementById("cashDetails").style.display = "none";
+
+                document.getElementById("mobileOptions").style.display = "none";
+
+                document.querySelectorAll("#cashDetails input").forEach(input => {
+                    input.disabled = true;
+                });
+
+            });
+
+        /* REGISTER PATIENT */
+
+        document.getElementById("patientForm")
+            .addEventListener("submit", function (event) {
+
+                event.preventDefault();
+
+                alert("Patient Registered Successfully!");
+
+                this.reset();
+
+            });
+
+    </script>
+
+
+</body>
+
+</html>
